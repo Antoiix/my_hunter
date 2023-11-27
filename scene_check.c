@@ -35,3 +35,11 @@ int is_scene_music(global_t *global, int index, int scene)
     else
         return 0;
 }
+
+int is_scene_luma(global_t *global, int index, int scene)
+{
+    if (get_luma_index(global->list_luma, index)->scene == scene)
+        return 1;
+    else
+        return 0;
+}

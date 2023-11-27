@@ -23,17 +23,17 @@ text_t *init_node_text(int scene, sfText *text, char *string)
     return tmp;
 }
 
-void add_node_text(text_t **list, int scene, sfText *text,
+void add_node_text(text_t ***list, int scene, sfText *text,
     char *string)
 {
     text_t *tmp = init_node_text(scene, text, string);
     text_t *head;
 
-    if (!*list) {
-        *list = tmp;
+    if (!**list) {
+        **list = tmp;
         return;
     }
-    for (head = *list; head->next; head = head->next);
+    for (head = **list; head->next; head = head->next);
     head->next = tmp;
 }
 

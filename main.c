@@ -15,17 +15,20 @@ int main(int ac, char **av, char **envp)
 {
     global_t global;
     sfRenderWindow *window;
-    sfVideoMode mode = {1920, 1080, 32};
+    sfVideoMode mode = {800, 600, 32};
+    sfImage *icon = sfImage_createFromFile("sources/icon.jpg");
+    player_t player_stats = {3, 0, NULL};
 
+    srand((time(0)));
     if (tty_error(envp) == 84)
         return 84;
-    global_init(&global);
-    window = sfRenderWindow_create(mode,
-                                    "My Hunter",
-                                    sfDefaultStyle,
-                                    NULL);
+    global_init(&global, &player_stats);
+    window = sfRenderWindow_create(mode, "My Hunter",
+        sfDefaultStyle, NULL);
     if (!window)
         return 84;
+    sfRenderWindow_setFramerateLimit(window, 60);
+    sfRenderWindow_setIcon(window, 512, 512, sfImage_getPixelsPtr(icon));
     launch_game(&global, window);
     destroy_all(global, window);
     return 0;
