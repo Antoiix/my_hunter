@@ -24,17 +24,17 @@ sprite_t *init_node_sprite(int scene, sfSprite *sprite,
     return tmp;
 }
 
-void add_node_sprite(sprite_t **list, int scene, sfSprite *sprite,
+void add_node_sprite(sprite_t ***list, int scene, sfSprite *sprite,
     sfTexture *texture)
 {
     sprite_t *tmp = init_node_sprite(scene, sprite, texture);
     sprite_t *head;
 
-    if (!*list) {
-        *list = tmp;
+    if (!**list) {
+        **list = tmp;
         return;
     }
-    for (head = *list; head->next; head = head->next);
+    for (head = **list; head->next; head = head->next);
     head->next = tmp;
 }
 

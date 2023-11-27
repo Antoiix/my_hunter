@@ -20,31 +20,35 @@ void title_music_init(global_t *global)
         sfMusic_createFromFile("sources/star_festival.ogg"));
     title_music = get_music_index(global->list_music, 0);
     sfMusic_setLoop(title_music->music, sfTrue);
-    sfMusic_setVolume(title_music->music, 100);
+    sfMusic_setVolume(title_music->music, 90);
     sfMusic_play(title_music->music);
 }
 
-void background_title_init(global_t *global)
+void background_title_init(sprite_t **list_sprite)
 {
     sprite_t *background;
 
-    add_node_sprite(&global->list_sprite, 0,
+    add_node_sprite(&list_sprite, 0,
         sfSprite_create(), sfTexture_createFromFile
             ("sources/background.jpg", NULL));
-    background = get_sprite_index(global->list_sprite, 0);
+    background = get_sprite_index(*list_sprite, 0);
     sfSprite_setTexture(background->sprite, background->texture, sfTrue);
+    sfSprite_setScale(background->sprite, (sfVector2f)
+        {(float)800 / 1920, (float)600 / 1080});
 }
 
-void title_text_init(global_t *global)
+void title_text_init(text_t **list_text)
 {
     text_t *title_text;
 
-    add_node_text(&global->list_text, 0, sfText_create(), "My Hunter");
-    title_text = get_text_index(global->list_text, 0);
+    add_node_text(&list_text, 0, sfText_create(), "My Hunter");
+    title_text = get_text_index(*list_text, 0);
     sfText_setString(title_text->text, title_text->string);
     sfText_setFont(title_text->text, sfFont_createFromFile
             ("sources/galaxy.ttf"));
     sfText_move(title_text->text, (sfVector2f){30, 0});
     sfText_setCharacterSize(title_text->text, 200);
     sfText_setColor(title_text->text, sfWhite);
+    sfText_setScale(title_text->text, (sfVector2f)
+        {(float)800 / 1920, (float)600 / 1080});
 }

@@ -20,6 +20,9 @@ luma_t *init_node_luma(int scene, sfSprite *luma,
     tmp->scene = scene;
     tmp->luma = luma;
     tmp->texture = texture;
+    tmp->clock_anim = sfClock_create();
+    tmp->rect = (sfIntRect){0, 0, 233, 233};
+    tmp->vector = (sfVector2f){-3, 0};
     tmp->next = NULL;
     return tmp;
 }
