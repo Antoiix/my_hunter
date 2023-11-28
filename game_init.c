@@ -34,7 +34,7 @@ void background_game_init(sprite_t **list_sprite)
     background = get_sprite_index(*list_sprite, 1);
     sfSprite_setTexture(background->sprite, background->texture, sfTrue);
     sfSprite_setScale(background->sprite, (sfVector2f)
-        {(float)800 / 1920, (float)600 / 1080});
+        {(float)800 / 1920, (float)450 / 1011});
 }
 
 void score_text_init(text_t **list_text)
@@ -50,7 +50,7 @@ void score_text_init(text_t **list_text)
     sfText_setCharacterSize(title_text->text, 75);
     sfText_setColor(title_text->text, sfWhite);
     sfText_setScale(title_text->text, (sfVector2f)
-        {(float)800 / 1920, (float)600 / 1080});
+        {(float)800 / 1920, (float)450 / 1011});
 }
 
 void score_text_number_init(text_t **list_text, player_t *player_stats)
@@ -66,5 +66,5 @@ void score_text_number_init(text_t **list_text, player_t *player_stats)
     sfText_setCharacterSize(title_text->text, 75);
     sfText_setColor(title_text->text, sfWhite);
     sfText_setScale(title_text->text, (sfVector2f)
-        {(float)800 / 1920, (float)600 / 1080});
+        {(float)800 / 1920, (float)450 / 1011});
 }

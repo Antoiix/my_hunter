@@ -19,7 +19,9 @@ SRC = music_list.c	\
 	title_init.c	\
 	draw.c	\
 	game_init.c	\
-	luma_create.c
+	luma_create.c	\
+	resize.c	\
+	title_buttons.c
 
 OBJ = $(SRC:.c=.o)
 

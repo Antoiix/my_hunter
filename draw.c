@@ -41,7 +41,7 @@ void draw_objects(global_t *global, sfRenderWindow *window, int actual_scene)
     if (is_scene_text(global, 1, actual_scene) == 1)
         sfRenderWindow_drawText(window, get_text_index(global->list_text,
             1)->text, NULL);
-    if (is_scene_text(global, 1, actual_scene) == 1)
+    if (is_scene_text(global, 2, actual_scene) == 1)
         sfRenderWindow_drawText(window, get_text_index(global->list_text,
             2)->text, NULL);
     sfRenderWindow_display(window);

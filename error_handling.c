@@ -14,7 +14,9 @@
 
 int tty_error(char **envp)
 {
-    if (envp[0] == NULL)
-        return 84;
-    return 0;
+    for (int i = 0; envp[i] != NULL; i++) {
+        if (my_strncmp(envp[i], "DISPLAY", 6) == 0)
+            return 0;
+    }
+    return 84;
 }

@@ -52,7 +52,7 @@ typedef struct list_luma {
 typedef struct player_stats {
     int nb_lives;
     int score;
-    char *str_score;
+    char str_score[];
 } player_t;
 typedef struct global {
     sprite_t *list_sprite;
@@ -78,7 +78,7 @@ int tty_error(char **envp);
 void launch_game(global_t *global, sfRenderWindow *window);
 void draw_objects(global_t *global, sfRenderWindow *window, int actual_scene);
 void clock_luma_anim(sfIntRect *rect, sfClock *clock, sfTime time);
-void manage_mouse_click(sfMouseButtonEvent event);
+void manage_mouse_click(sfMouseButtonEvent event, luma_t *list_luma, player_t *player_stats, sfRenderWindow *window);
 void title_music_init(global_t *global);
 void title_init(global_t *global);
 void destroy_all(global_t global, sfRenderWindow *window);
@@ -96,8 +96,8 @@ void all_lumas_move_left(sfIntRect *rect, sfTime time,
     int *current_scene, global_t *global);
 void clock_luma_spawn(sfClock *clock, global_t *global,
     sfRenderWindow *window, sfTime time);
-void luma_destroy(luma_t **list_luma);
 void score_text_init(text_t **list_text);
 void score_text_number_init(text_t **list_text, player_t *player_stats);
+void resize(global_t *global, sfRenderWindow *window, int *actual_scene);
 
 #endif //LIST_H

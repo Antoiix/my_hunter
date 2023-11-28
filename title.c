@@ -29,7 +29,11 @@ void analyse_events(sfRenderWindow *window, sfEvent event,
         if (sfKeyboard_isKeyPressed(sfKeyEscape))
             sfRenderWindow_close(window);
         if (event.type == sfEvtMouseButtonPressed)
-            manage_mouse_click(event.mouseButton);
+            manage_mouse_click(event.mouseButton, global->list_luma, global->player, window);
+        if (event.type == sfEvtResized)
+            resize(global, window, actual_scene);
+        if (global->player->score >= 150)
+            *actual_scene = 2;
     }
 }
 
@@ -39,26 +43,32 @@ void destroy_all(global_t global, sfRenderWindow *window)
     sfRenderWindow_destroy(window);
 }
 
-void player_score(player_t *player_stats, text_t *list_text) {
-    int current_score = player_stats->score;
-    int score = 0;
-    int size_for_malloc = 0;
-    char *str;
-    int i = 0;
+void tostring(char str[], int num)
+{
+    int i;
+    int rem;
+    int len = 0;
+    int n;
 
-    for (; current_score >= 10; size_for_malloc++)
-        current_score %= 10;
-    str = malloc(sizeof(char) * (size_for_malloc + 1));
-    for (current_score = player_stats->score; current_score >= 10; i++) {
-        score = current_score % 10;
-        current_score /= 10;
-        str[i] = score + 48;
+    n = num;
+    while (n != 0)
+    {
+        len++;
+        n /= 10;
     }
-    str[i] = '0';
-    str[i + 1] = '\0';
-    player_stats->str_score = str;
-    sfText_setString(get_text_index(list_text, 2)->text, str);
-    //my_printf("%s\n", player_stats->str_score);
+    for (i = 0; i < len; i++)
+    {
+        rem = num % 10;
+        num = num / 10;
+        str[len - (i + 1)] = rem + '0';
+    }
+    str[len] = '\0';
+}
+
+void player_score(player_t *player_stats, text_t *list_text)
+{
+    tostring(player_stats->str_score, player_stats->score);
+    sfText_setString(get_text_index(list_text, 2)->text, player_stats->str_score);
 }
 
 void launch_game(global_t *global, sfRenderWindow *window)
@@ -72,13 +82,13 @@ void launch_game(global_t *global, sfRenderWindow *window)
     title_init(global);
     game_init(global);
     luma_create(global, window);
+    //global->player->score = 148;
     while (sfRenderWindow_isOpen(window)) {
         if (actual_scene == 1) {
             clock_luma_spawn(clock_for_spawn, global, window, time);
         }
         player_score(global->player, global->list_text);
-        //my_printf("%s\n", global->player->str_score);
-        luma_destroy(&global->list_luma);
+        //my_printf("%i\n", global->player->score);
         analyse_events(window, event, &actual_scene, global);
         all_lumas_move_left(&rect, time, &actual_scene, global);
         sfRenderWindow_clear(window, sfBlack);

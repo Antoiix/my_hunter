@@ -30,29 +30,13 @@ void luma_create(global_t *global, sfRenderWindow *window)
     }
     luma = get_luma_index(global->list_luma, i);
     sfSprite_setPosition(luma->luma, (sfVector2f)
-        {(float)sfRenderWindow_getSize(window).x,
-        ((float)(rand() % 76) / 100) *
-        (float)(sfRenderWindow_getSize(window).y) + 65});
+        {800,
+        (((float)(rand() % 61) / 100) *
+        (float)(600)) + 45});
     sfSprite_setTexture(luma->luma, luma->texture, sfTrue);
     sfSprite_setTextureRect(luma->luma, rect);
     sfSprite_setColor(luma->luma, color);
     sfSprite_setScale(luma->luma, (sfVector2f)
-        {(float)800 / 1920 * 0.5, (float)600 / 1080 * 0.5});
-}
-
-void luma_free(luma_t **list_luma)
-{
-    luma_t *temp = *list_luma;
-
-    *list_luma = (*list_luma)->next;
-    free(temp);
-}
-
-void luma_destroy(luma_t **list_luma)
-{
-    luma_t *current_luma = get_luma_index(*list_luma, 0);
-
-    if (sfSprite_getPosition(current_luma->luma).x < -75) {
-        luma_free(list_luma);
-    }
+        {(float)800 / 1920 * 0.5 * (1 / (float)(global->player->score * 0.01 + 1)),
+        (float)450 / 1011 * 0.5 * (1 / (float)(global->player->score * 0.01 + 1))});
 }
