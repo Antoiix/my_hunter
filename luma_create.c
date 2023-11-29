@@ -28,21 +28,26 @@ void luma_setup(global_t *global, luma_t *luma, sfColor color, sfIntRect rect)
         (global->player->score * 0.01 + 1))});
 }
 
-void luma_create(global_t *global)
+int luma_create(global_t *global)
 {
     luma_t *luma;
     sfIntRect rect = {0, 0, 233, 233};
     int i = 0;
     sfColor color = {255, 255, 255, 255};
+    sfTexture *texture = sfTexture_createFromFile
+        ("sources/spritesheet.png", NULL);
 
     color.r = rand() % 206 + 50;
     color.g = rand() % 206 + 50;
     color.b = rand() % 206 + 50;
+    if (texture == NULL)
+        return 84;
     add_node_luma(&global->list_luma, 1, sfSprite_create(),
-        sfTexture_createFromFile("sources/spritesheet.png", NULL));
+        texture);
     while (get_luma_index(global->list_luma, i)->next != NULL || i == 0) {
         i++;
     }
     luma = get_luma_index(global->list_luma, i);
     luma_setup(global, luma, color, rect);
+    return 0;
 }

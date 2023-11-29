@@ -47,7 +47,7 @@ void destroy_all(global_t global, sfRenderWindow *window, sfImage *image)
     sfRenderWindow_destroy(window);
 }
 
-void tostring(char str[], int num)
+void inttostr(char str[], int num)
 {
     int i;
     int temp;
@@ -69,14 +69,14 @@ void tostring(char str[], int num)
 
 void player_score(player_t *player_stats, text_t *list_text)
 {
-    tostring(player_stats->str_score, player_stats->score);
+    inttostr(player_stats->str_score, player_stats->score);
     sfText_setString(get_text_index(list_text, 2)->text,
         player_stats->str_score);
     sfText_setString(get_text_index(list_text, 5)->text,
         player_stats->str_score);
 }
 
-void launch_game(global_t *global, sfRenderWindow *window)
+int launch_game(global_t *global, sfRenderWindow *window)
 {
     sfEvent event;
     int actual_scene = 0;
@@ -84,7 +84,8 @@ void launch_game(global_t *global, sfRenderWindow *window)
     sfClock *clock_for_spawn = sfClock_create();
     rosalina_t rosalina = {sfClock_create(), {0, 0, 320, 300}};
 
-    all_inits(global);
+    if (all_inits(global) == 84)
+        return 84;
     while (sfRenderWindow_isOpen(window)) {
         if (actual_scene == 1) {
             clock_luma_spawn(clock_for_spawn, global, time);
@@ -96,4 +97,5 @@ void launch_game(global_t *global, sfRenderWindow *window)
         sfRenderWindow_clear(window, sfBlack);
         draw_objects(global, window, actual_scene);
     }
+    return 0;
 }

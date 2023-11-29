@@ -11,6 +11,13 @@
 #include "my.h"
 #include "list.h"
 
+void window_setup(sfRenderWindow *window, sfImage *icon)
+{
+    sfRenderWindow_setMouseCursorVisible(window, sfFalse);
+    sfRenderWindow_setFramerateLimit(window, 60);
+    sfRenderWindow_setIcon(window, 512, 512, sfImage_getPixelsPtr(icon));
+}
+
 int main(int ac, char **av, char **envp)
 {
     global_t global;
@@ -22,15 +29,15 @@ int main(int ac, char **av, char **envp)
     srand((time(0)));
     if (tty_error(envp) == 84)
         return 84;
-    global_init(&global, &player_stats);
+    if (global_init(&global, &player_stats, icon) == 84)
+        return 84;
     window = sfRenderWindow_create(mode, "My Hunter",
         sfDefaultStyle, NULL);
     if (!window)
         return 84;
-    sfRenderWindow_setMouseCursorVisible(window, sfFalse);
-    sfRenderWindow_setFramerateLimit(window, 60);
-    sfRenderWindow_setIcon(window, 512, 512, sfImage_getPixelsPtr(icon));
-    launch_game(&global, window);
+    window_setup(window, icon);
+    if (launch_game(&global, window) == 84)
+        return 84;
     destroy_all(global, window, icon);
     return 0;
 }

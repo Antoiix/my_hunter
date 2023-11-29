@@ -12,10 +12,15 @@
 #include "my.h"
 #include "list.h"
 
-void all_inits(global_t *global)
+int all_inits(global_t *global)
 {
-    title_init(global);
-    game_init(global);
-    button_init(global);
-    luma_create(global);
+    if (title_init(global) == 84)
+        return 84;
+    if (game_init(global) == 84)
+        return 84;
+    if (button_init(global) == 84)
+        return 84;
+    if (luma_create(global) == 84)
+        return 84;
+    return 0;
 }
