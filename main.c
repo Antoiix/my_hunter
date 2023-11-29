@@ -18,6 +18,28 @@ void window_setup(sfRenderWindow *window, sfImage *icon)
     sfRenderWindow_setIcon(window, 512, 512, sfImage_getPixelsPtr(icon));
 }
 
+void help_text(int a)
+{
+    if (a == 1)
+        my_printf("My Hunter\n\nClick on the lumas to save them.\n"
+            "Try to reach 100 points ;)\n\nCommands :\n"
+            "Click to save lumas\nESC to exit\n");
+}
+
+int help(int ac, char **av, int a)
+{
+    if (ac > 2)
+        return 84;
+    if (ac == 2) {
+        if (my_strcmp(av[1], "-h") == 0) {
+            help_text(a);
+            return 1;
+        } else
+            return 84;
+    }
+    return 0;
+}
+
 int main(int ac, char **av, char **envp)
 {
     global_t global;
@@ -27,13 +49,13 @@ int main(int ac, char **av, char **envp)
     player_t player_stats = {3, 0};
 
     srand((time(0)));
-    if (tty_error(envp) == 84)
+    if (tty_error(envp) == 84 || help(ac, av, 1) == 84)
         return 84;
-    if (global_init(&global, &player_stats, icon) == 84)
-        return 84;
+    if (help(ac, av, 0) == 1)
+        return 0;
     window = sfRenderWindow_create(mode, "My Hunter",
         sfDefaultStyle, NULL);
-    if (!window)
+    if (global_init(&global, &player_stats, icon) == 84 || !window)
         return 84;
     window_setup(window, icon);
     if (launch_game(&global, window) == 84)
@@ -44,4 +66,3 @@ int main(int ac, char **av, char **envp)
 
 // add README.md
 // add -h
-// add secure for ressources
