@@ -31,7 +31,7 @@ void lose_text_init(text_t **list_text)
     text_t *lose_text;
 
     add_node_text(&list_text, 2, sfText_create(),
-        "You save\t\t  lumas but some of them\n\t\t\t\t\tare still prisoners");
+        "You saved\t\tlumas but some of them\n\t\t\t\t\tare still prisoners");
     lose_text = get_text_index(*list_text, 3);
     sfText_setString(lose_text->text, lose_text->string);
     sfText_setFont(lose_text->text, sfFont_createFromFile
@@ -68,7 +68,7 @@ void lose_nb_init(text_t **list_text, player_t *player_stats)
     sfText_setString(title_text->text, title_text->string);
     sfText_setFont(title_text->text, sfFont_createFromFile
             ("sources/galaxy.ttf"));
-    sfText_move(title_text->text, (sfVector2f){242, 1});
+    sfText_move(title_text->text, (sfVector2f){260, 1});
     sfText_setCharacterSize(title_text->text, 62);
     sfText_setColor(title_text->text, sfWhite);
     sfText_setScale(title_text->text, (sfVector2f)
