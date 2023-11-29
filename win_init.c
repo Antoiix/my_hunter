@@ -50,7 +50,7 @@ void win_music_init(global_t *global)
         sfMusic_createFromFile("sources/sad_story.ogg"));
     game_music = get_music_index(global->list_music, 5);
     sfMusic_setLoop(game_music->music, sfTrue);
-    sfMusic_setVolume(game_music->music, 40);
+    sfMusic_setVolume(game_music->music, 20);
 }
 
 void rosalina_win_init(sprite_t **list_sprite)

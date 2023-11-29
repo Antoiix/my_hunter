@@ -20,7 +20,7 @@ void title_music_init(global_t *global)
         sfMusic_createFromFile("sources/star_festival.ogg"));
     title_music = get_music_index(global->list_music, 0);
     sfMusic_setLoop(title_music->music, sfTrue);
-    sfMusic_setVolume(title_music->music, 90);
+    sfMusic_setVolume(title_music->music, 50);
     sfMusic_play(title_music->music);
 }
 

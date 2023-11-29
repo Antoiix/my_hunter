@@ -20,8 +20,7 @@ void game_music_init(global_t *global)
         sfMusic_createFromFile("sources/violet_comet.ogg"));
     game_music = get_music_index(global->list_music, 1);
     sfMusic_setLoop(game_music->music, sfTrue);
-    sfMusic_setVolume(game_music->music, 100);
-    sfMusic_play(game_music->music);
+    sfMusic_setVolume(game_music->music, 60);
 }
 
 void background_game_init(sprite_t **list_sprite)
