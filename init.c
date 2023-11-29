@@ -34,4 +34,25 @@ void game_init(global_t *global)
     background_game_init(&global->list_sprite);
     score_text_init(&global->list_text);
     score_text_number_init(&global->list_text, global->player);
+    cursor_sprite_init(&global->list_sprite);
+    fheart_init(&global->list_sprite);
+    sheart_init(&global->list_sprite);
+    theart_init(&global->list_sprite);
+    lose_life_music_init(global);
+    save_luma_music_init(global);
+}
+
+void button_init(global_t *global)
+{
+    start_button_init(&global->list_sprite);
+    background_lose_init(&global->list_sprite);
+    lose_text_init(&global->list_text);
+    esc_text_init(&global->list_text);
+    lose_nb_init(&global->list_text, global->player);
+    lose_music_init(global);
+    background_win_init(&global->list_sprite);
+    win_music_init(global);
+    twoesc_text_init(&global->list_text);
+    rosalina_win_init(&global->list_sprite);
+    secret_text_init(&global->list_text);
 }

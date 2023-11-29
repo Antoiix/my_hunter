@@ -12,14 +12,29 @@
 #include "my.h"
 #include "list.h"
 
-void luma_create(global_t *global, sfRenderWindow *window)
+void luma_setup(global_t *global, luma_t *luma, sfColor color, sfIntRect rect)
+{
+    sfSprite_setPosition(luma->luma, (sfVector2f)
+        {800,
+        (((float)(rand() % 61) / 100) *
+        (float)(600)) + 45});
+    sfSprite_setTexture(luma->luma, luma->texture, sfTrue);
+    sfSprite_setTextureRect(luma->luma, rect);
+    sfSprite_setColor(luma->luma, color);
+    sfSprite_setScale(luma->luma, (sfVector2f)
+        {(float)800 / 1920 * 0.5 * (1 / (float)
+        (global->player->score * 0.01 + 1)),
+        (float)450 / 1011 * 0.5 * (1 / (float)
+        (global->player->score * 0.01 + 1))});
+}
+
+void luma_create(global_t *global)
 {
     luma_t *luma;
     sfIntRect rect = {0, 0, 233, 233};
     int i = 0;
     sfColor color = {255, 255, 255, 255};
 
-    //my_printf("rand : %i\n", rand() % 156 + 100);
     color.r = rand() % 206 + 50;
     color.g = rand() % 206 + 50;
     color.b = rand() % 206 + 50;
@@ -29,14 +44,5 @@ void luma_create(global_t *global, sfRenderWindow *window)
         i++;
     }
     luma = get_luma_index(global->list_luma, i);
-    sfSprite_setPosition(luma->luma, (sfVector2f)
-        {800,
-        (((float)(rand() % 61) / 100) *
-        (float)(600)) + 45});
-    sfSprite_setTexture(luma->luma, luma->texture, sfTrue);
-    sfSprite_setTextureRect(luma->luma, rect);
-    sfSprite_setColor(luma->luma, color);
-    sfSprite_setScale(luma->luma, (sfVector2f)
-        {(float)800 / 1920 * 0.5 * (1 / (float)(global->player->score * 0.01 + 1)),
-        (float)450 / 1011 * 0.5 * (1 / (float)(global->player->score * 0.01 + 1))});
+    luma_setup(global, luma, color, rect);
 }

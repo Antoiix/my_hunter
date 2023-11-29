@@ -29,7 +29,7 @@ void clock_luma_spawn(sfClock *clock, global_t *global,
         i++;
     }
     if (time.microseconds / (250000 + (global->player->score * 5000)) > 0.01) {
-        luma_create(global, window);
+        luma_create(global);
         sfClock_restart(clock);
     }
 }
@@ -38,29 +38,25 @@ void clock_luma_anim(sfIntRect *rect, sfClock *clock,
     sfTime time)
 {
     time = sfClock_getElapsedTime(clock);
-    //my_printf("time %d\n");
     if ((time.microseconds / 200000.0) > 1.0) {
-        //my_printf("PASSED anim\n");
         move_rect_luma(rect, 233, 233 * 6);
         sfClock_restart(clock);
     }
 }
 
-void all_lumas_move_left(sfIntRect *rect, sfTime time,
-    int *current_scene, global_t *global) {
+void all_lumas_move_left(sfTime time,
+    int *current_scene, global_t *global)
+{
     luma_t *luma;
-    //int i = 0;
 
-    for (int i = 0; get_luma_index(global->list_luma, i)->next != NULL || i == 0; i++) {
+    for (int i = 0; get_luma_index(global->list_luma, i)->next != NULL ||
+        i == 0; i++) {
         if (*current_scene == 1) {
-            //my_printf("PASSED with i = %d\n", i);
             luma = get_luma_index(global->list_luma, i);
             clock_luma_anim(&luma->rect, luma->clock_anim, time);
             sfSprite_setTextureRect(luma->luma, luma->rect);
-            //my_printf("x : %f\n", sfSprite_getPosition(luma->luma).x);
             luma->vector.x = -3 - (0.02 * global->player->score);
             sfSprite_move(luma->luma, luma->vector);
         }
-        //i++;
     }
 }

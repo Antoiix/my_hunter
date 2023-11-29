@@ -27,9 +27,10 @@ int main(int ac, char **av, char **envp)
         sfDefaultStyle, NULL);
     if (!window)
         return 84;
+    sfRenderWindow_setMouseCursorVisible(window, sfFalse);
     sfRenderWindow_setFramerateLimit(window, 60);
     sfRenderWindow_setIcon(window, 512, 512, sfImage_getPixelsPtr(icon));
     launch_game(&global, window);
-    destroy_all(global, window);
+    destroy_all(global, window, icon);
     return 0;
 }

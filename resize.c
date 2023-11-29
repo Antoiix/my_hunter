@@ -20,8 +20,7 @@ void resize(global_t *global, sfRenderWindow *window, int *actual_scene)
     if (x < 800 || y < 450 || x > 1920 || y > 1080) {
         *actual_scene = -1;
         my_printf("Please resize the window\n");
-    }
-    else if (*actual_scene == -1) {
+    } else if (*actual_scene == -1) {
         *actual_scene = 0;
         sfMusic_play(get_music_index(global->list_music, 0)->music);
     }

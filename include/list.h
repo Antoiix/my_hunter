@@ -78,10 +78,11 @@ int tty_error(char **envp);
 void launch_game(global_t *global, sfRenderWindow *window);
 void draw_objects(global_t *global, sfRenderWindow *window, int actual_scene);
 void clock_luma_anim(sfIntRect *rect, sfClock *clock, sfTime time);
-void manage_mouse_click(sfMouseButtonEvent event, luma_t *list_luma, player_t *player_stats, sfRenderWindow *window);
+void manage_mouse_click(sfMouseButtonEvent event, global_t *global,
+    int *current_scene, sfRenderWindow *window);
 void title_music_init(global_t *global);
 void title_init(global_t *global);
-void destroy_all(global_t global, sfRenderWindow *window);
+void destroy_all(global_t global, sfRenderWindow *window, sfImage *image);
 void background_title_init(sprite_t **list_sprite);
 void title_text_init(text_t **list_text);
 void game_music_init(global_t *global);
@@ -90,14 +91,43 @@ void background_game_init(sprite_t **list_sprite);
 void add_node_luma(luma_t **list, int scene, sfSprite *luma,
     sfTexture *texture);
 luma_t *get_luma_index(luma_t *list, int index);
-void luma_create(global_t *global, sfRenderWindow *window);
+void luma_create(global_t *global);
 int is_scene_luma(global_t *global, int index, int scene);
-void all_lumas_move_left(sfIntRect *rect, sfTime time,
-    int *current_scene, global_t *global);
+void all_lumas_move_left(sfTime time, int *current_scene,
+    global_t *global);
 void clock_luma_spawn(sfClock *clock, global_t *global,
     sfRenderWindow *window, sfTime time);
 void score_text_init(text_t **list_text);
 void score_text_number_init(text_t **list_text, player_t *player_stats);
 void resize(global_t *global, sfRenderWindow *window, int *actual_scene);
+void cursor_sprite_init(sprite_t **list_sprite);
+void keyboard_inputs(sfRenderWindow *window, global_t *global);
+void mouse_follow(sfRenderWindow *window, global_t *global);
+void start_button_init(sprite_t **list_sprite);
+void button_init(global_t *global);
+void title_button_events(sfMouseButtonEvent event, global_t *global,
+    int *current_scene, sfRenderWindow *window);
+void fheart_init(sprite_t **list_sprite);
+void sheart_init(sprite_t **list_sprite);
+void theart_init(sprite_t **list_sprite);
+void lose_life_music_init(global_t *global);
+void save_luma_music_init(global_t *global);
+void background_lose_init(sprite_t **list_sprite);
+void lose_text_init(text_t **list_text);
+void esc_text_init(text_t **list_text);
+void lose_nb_init(text_t **list_text, player_t *player_stats);
+void lose_music_init(global_t *global);
+void background_win_init(sprite_t **list_sprite);
+void win_music_init(global_t *global);
+void twoesc_text_init(text_t **list_text);
+typedef struct rosalina {
+    sfClock *clock;
+    sfIntRect rect;
+}rosalina_t;
+void rosalina_anim(sprite_t **list_sprite, rosalina_t *rosalina,
+    sfTime time, int *current_scene);
+void rosalina_win_init(sprite_t **list_sprite);
+void secret_text_init(text_t **list_text);
+void all_inits(global_t *global);
 
 #endif //LIST_H

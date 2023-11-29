@@ -52,3 +52,23 @@ void title_text_init(text_t **list_text)
     sfText_setScale(title_text->text, (sfVector2f)
         {(float)800 / 1920, (float)450 / 1011});
 }
+
+void lose_life_music_init(global_t *global)
+{
+    music_t *llife_music;
+
+    add_node_music(&global->list_music, 0,
+        sfMusic_createFromFile("sources/lose_life.wav"));
+    llife_music = get_music_index(global->list_music, 2);
+    sfMusic_setVolume(llife_music->music, 100);
+}
+
+void save_luma_music_init(global_t *global)
+{
+    music_t *sluma_music;
+
+    add_node_music(&global->list_music, 0,
+        sfMusic_createFromFile("sources/luma_sound.ogg"));
+    sluma_music = get_music_index(global->list_music, 3);
+    sfMusic_setVolume(sluma_music->music, 100);
+}
