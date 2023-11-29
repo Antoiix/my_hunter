@@ -18,7 +18,7 @@ void analyse_events(sfRenderWindow *window, sfEvent event,
     while (sfRenderWindow_pollEvent(window, &event)) {
         if (event.type == sfEvtClosed)
             sfRenderWindow_close(window);
-        keyboard_inputs(window, global);
+        keyboard_inputs(window);
         if (event.type == sfEvtMouseButtonPressed)
             manage_mouse_click(event.mouseButton, global,
             actual_scene, window);
@@ -80,7 +80,6 @@ void launch_game(global_t *global, sfRenderWindow *window)
 {
     sfEvent event;
     int actual_scene = 0;
-    sfIntRect rect = {0, 0, 233, 233};
     sfTime time;
     sfClock *clock_for_spawn = sfClock_create();
     rosalina_t rosalina = {sfClock_create(), {0, 0, 320, 300}};
@@ -88,7 +87,7 @@ void launch_game(global_t *global, sfRenderWindow *window)
     all_inits(global);
     while (sfRenderWindow_isOpen(window)) {
         if (actual_scene == 1) {
-            clock_luma_spawn(clock_for_spawn, global, window, time);
+            clock_luma_spawn(clock_for_spawn, global, time);
         }
         player_score(global->player, global->list_text);
         analyse_events(window, event, &actual_scene, global);

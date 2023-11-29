@@ -48,7 +48,7 @@ void button_init(global_t *global)
     background_lose_init(&global->list_sprite);
     lose_text_init(&global->list_text);
     esc_text_init(&global->list_text);
-    lose_nb_init(&global->list_text, global->player);
+    lose_nb_init(&global->list_text);
     lose_music_init(global);
     background_win_init(&global->list_sprite);
     win_music_init(global);

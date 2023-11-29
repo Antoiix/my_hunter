@@ -59,7 +59,7 @@ void esc_text_init(text_t **list_text)
         {(float)800 / 1920, (float)450 / 1011});
 }
 
-void lose_nb_init(text_t **list_text, player_t *player_stats)
+void lose_nb_init(text_t **list_text)
 {
     text_t *title_text;
 

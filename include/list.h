@@ -96,12 +96,12 @@ int is_scene_luma(global_t *global, int index, int scene);
 void all_lumas_move_left(sfTime time, int *current_scene,
     global_t *global);
 void clock_luma_spawn(sfClock *clock, global_t *global,
-    sfRenderWindow *window, sfTime time);
+    sfTime time);
 void score_text_init(text_t **list_text);
 void score_text_number_init(text_t **list_text, player_t *player_stats);
 void resize(global_t *global, sfRenderWindow *window, int *actual_scene);
 void cursor_sprite_init(sprite_t **list_sprite);
-void keyboard_inputs(sfRenderWindow *window, global_t *global);
+void keyboard_inputs(sfRenderWindow *window);
 void mouse_follow(sfRenderWindow *window, global_t *global);
 void start_button_init(sprite_t **list_sprite);
 void button_init(global_t *global);
@@ -115,7 +115,7 @@ void save_luma_music_init(global_t *global);
 void background_lose_init(sprite_t **list_sprite);
 void lose_text_init(text_t **list_text);
 void esc_text_init(text_t **list_text);
-void lose_nb_init(text_t **list_text, player_t *player_stats);
+void lose_nb_init(text_t **list_text);
 void lose_music_init(global_t *global);
 void background_win_init(sprite_t **list_sprite);
 void win_music_init(global_t *global);

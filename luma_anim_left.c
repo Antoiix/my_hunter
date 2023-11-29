@@ -20,7 +20,7 @@ void move_rect_luma(sfIntRect *rect, int offset, int max_value)
 }
 
 void clock_luma_spawn(sfClock *clock, global_t *global,
-    sfRenderWindow *window, sfTime time)
+    sfTime time)
 {
     int i = 0;
 

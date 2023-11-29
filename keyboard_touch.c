@@ -21,7 +21,7 @@ void mouse_follow(sfRenderWindow *window, global_t *global)
         (450.0 / (float)sfRenderWindow_getSize(window).y)});
 }
 
-void keyboard_inputs(sfRenderWindow *window, global_t *global)
+void keyboard_inputs(sfRenderWindow *window)
 {
     if (sfKeyboard_isKeyPressed(sfKeyEscape))
         sfRenderWindow_close(window);

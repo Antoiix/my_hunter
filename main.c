@@ -34,3 +34,7 @@ int main(int ac, char **av, char **envp)
     destroy_all(global, window, icon);
     return 0;
 }
+
+// add README.md
+// add -h
+// add secure for ressources
