@@ -21,7 +21,6 @@ SRC = music_list.c	\
 	game_init.c	\
 	luma_create.c	\
 	resize.c	\
-	title_buttons.c	\
 	button_init.c	\
 	keyboard_touch.c	\
 	buttons_events.c	\

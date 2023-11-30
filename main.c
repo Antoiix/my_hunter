@@ -22,7 +22,7 @@ void help_text(int a)
 {
     if (a == 1)
         my_printf("My Hunter\n\nClick on the lumas to save them.\n"
-            "Try to reach 100 points ;)\n\nCommands :\n"
+            "Try to reach 100 points ;)\n\nControls :\n"
             "Click to save lumas\nESC to exit\n");
 }
 
